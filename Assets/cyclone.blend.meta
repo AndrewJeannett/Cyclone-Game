@@ -284,6 +284,10 @@ ModelImporter:
     100552: Cylinder_246
     100554: Cylinder_247
     100556: Cylinder_248
+    100558: BezierCurve
+    100560: Cylinder_249
+    100562: Cylinder_250
+    100564: Cylinder_251
     400000: BezierCircle
     400002: Cube
     400004: Cube_001
@@ -563,6 +567,10 @@ ModelImporter:
     400552: Cylinder_246
     400554: Cylinder_247
     400556: Cylinder_248
+    400558: BezierCurve
+    400560: Cylinder_249
+    400562: Cylinder_250
+    400564: Cylinder_251
     2300000: BezierCircle
     2300002: Cube
     2300004: Cube_001
@@ -841,6 +849,10 @@ ModelImporter:
     2300550: Cylinder_246
     2300552: Cylinder_247
     2300554: Cylinder_248
+    2300556: BezierCurve
+    2300558: Cylinder_249
+    2300560: Cylinder_250
+    2300562: Cylinder_251
     3300000: BezierCircle
     3300002: Cube
     3300004: Cube_001
@@ -1119,6 +1131,10 @@ ModelImporter:
     3300550: Cylinder_246
     3300552: Cylinder_247
     3300554: Cylinder_248
+    3300556: BezierCurve
+    3300558: Cylinder_249
+    3300560: Cylinder_250
+    3300562: Cylinder_251
     4300000: Torus_018
     4300002: Torus_017
     4300004: Torus_016
@@ -1397,6 +1413,10 @@ ModelImporter:
     4300550: Cylinder_005
     4300552: Cylinder_247
     4300554: Cylinder_248
+    4300556: BezierCurve
+    4300558: Cylinder_251
+    4300560: Cylinder_250
+    4300562: Cylinder_249
     7400000: Default Take
     9500000: //RootNode
   materials:
