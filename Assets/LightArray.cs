@@ -6,20 +6,22 @@ public class LightArray : MonoBehaviour {
     public List <GameObject> lightsOff= new List<GameObject>();
     public List <GameObject> lightsOn = new List<GameObject>();
     public int lightPos;
+    public int trail;
 	// Use this for initialization
 	
 	// Update is called once per frame
 	void Update () {
+        
         if (lightsOn.Count <= 9)
         {
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < trail; i++)
             {
                 lightsOn.Add(lightsOff[i+lightPos]);
                 lightsOff.Remove(lightsOff[i+lightPos]);
-
+                
             }
         }
-       Invoke("lightClear", .01f);
+       Invoke("lightClear", .0001f);
         for (int i = 0; i < lightsOn.Count; i++)
         {
             lightsOn[i].SetActive(true);
