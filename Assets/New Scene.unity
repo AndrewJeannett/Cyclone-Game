@@ -13730,7 +13730,7 @@ MonoBehaviour:
   - {fileID: 1636204104}
   lightsOn: []
   lightPos: 0
-  trail: 4
+  trail: 1
 --- !u!1 &1732752118
 GameObject:
   m_ObjectHideFlags: 0

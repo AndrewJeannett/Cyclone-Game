@@ -7,12 +7,20 @@ public class LightArray : MonoBehaviour {
     public List <GameObject> lightsOn = new List<GameObject>();
     public int lightPos;
     public int trail;
+    private bool stop = false;
 	// Use this for initialization
 	
 	// Update is called once per frame
 	void Update () {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            stop = true;
+        }else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            stop = false;
+        }
         
-        if (lightsOn.Count <= 9)
+        if (lightsOn.Count < 1)
         {
             for (int i = 0; i < trail; i++)
             {
@@ -39,17 +47,19 @@ public class LightArray : MonoBehaviour {
     }
     void lightClear()
     {
+       if (stop == false)
+       {
 
-       
-           for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 100; i++)
             {
-               lightsOff.Add(lightsOn[i]);
-               lightsOn.Remove(lightsOn[i]);
+                lightsOff.Add(lightsOn[i]);
+                lightsOn.Remove(lightsOn[i]);
 
             }
 
             lightsOn.Clear();
         }
+    }
 
     }
 
