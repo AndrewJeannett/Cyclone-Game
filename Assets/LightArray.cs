@@ -13,7 +13,7 @@ public class LightArray : MonoBehaviour {
     // Use this for initialization
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             stop = true;
@@ -58,10 +58,14 @@ public class LightArray : MonoBehaviour {
         {
             winSound.Play();
             Debug.Log("WINNER");
+
             stop = false;
-            trail = 40;
+            lightsOn.Remove(lightsOn[0]);
+            trail = 30;
+         
+            }
         }
-    }
+    
 
 
 
@@ -78,6 +82,7 @@ public class LightArray : MonoBehaviour {
                 }
 
                 lightsOn.Clear();
+           
             }
         }
 
