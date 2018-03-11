@@ -4,87 +4,62 @@ using UnityEngine;
 //using static UnityStandardAssets.Utility.TimedObjectActivator;
 
 public class LightArray : MonoBehaviour {
-    public List<GameObject> lightsOff = new List<GameObject>();
-    public List<GameObject> lightsOn = new List<GameObject>();
+    public List<GameObject> lights;
     public int lightPos;
     public int trail;
     private bool stop = false;
     public AudioSource winSound;
+    private string WIN_LIGHT = "winLight";
+    
     // Use this for initialization
+    void Start() 
+    {
+        lights = new List<GameObject>();
+    }
 
     // Update is called once per frame
-    void FixedUpdate() {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            stop = true;
-          
-        } else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            stop = false;
-        }
+    void FixedUpdate() 
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) { stop = true; } 
+        if (Input.GetKeyDown(KeyCode.DownArrow)) { stop = false; }
 
-        if (lightsOn.Count < 1)
+        if (lights.Count < 1)
         {
-            for (int i = 0; i < trail; i++)
-            {
-                lightsOn.Add(lightsOff[i + lightPos]);
-                lightsOff.Remove(lightsOff[i + lightPos]);
-
-            }
+            // Do logic in case somebody sets the light count to less than 1?
         }
       
-
-
-        Invoke("lightClear", .0001f);
-
-        for (int i = 0; i < lightsOn.Count; i++)
+        //Invoke("lightClear", .0001f);
+        if (stop == false) 
         {
-            lightsOn[i].SetActive(true);
+            for (int i = 0; i < lights.Count; i++)
+            {
+                lights[i].SetActive(true);
+                lights[i - trail].SetActive(false);
+            }
         }
 
-        for (int i = 0; i < lightsOff.Count; i++)
+        if ((lights[0].tag == WIN_LIGHT) && (stop))
         {
-            lightsOff[i].SetActive(false);
-        }
-        //  if (lightList.Count <= 10)
-        // {
-        //  lightList.Add(Random.Range(0, 90));
+            stop = false;
+            trail = 30;
 
-        // }
-        // lightList.Remove(Random.Range(0, 90));
-
-
-        if ((lightsOn[0].tag == "winLight") && (stop == true))
-        {
             winSound.Play();
             Debug.Log("WINNER");
-
-            stop = false;
-            lightsOn.Remove(lightsOn[0]);
-            trail = 30;
-         
-            }
         }
-    
-
-
-
-        void lightClear()
-    {
-            if (stop == false)
-            {
-
-                for (int i = 0; i < 100; i++)
-                {
-                    lightsOff.Add(lightsOn[i]);
-                    lightsOn.Remove(lightsOn[i]);
-
-                }
-
-                lightsOn.Clear();
-           
-            }
-        }
-
     }
+
+    // void lightClear()
+    // {
+    //     if (stop == false)
+    //     {
+    //         for (int i = 0; i < 100; i++)
+    //         {
+    //             lightsOff.Add(lightsOn[i]);
+    //             lightsOn.Remove(lightsOn[i]);
+    //         }
+
+    //         lightsOn.Clear();           
+    //     }
+    // }
+}
 
