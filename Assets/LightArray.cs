@@ -5,61 +5,60 @@ using UnityEngine;
 
 public class LightArray : MonoBehaviour {
     public List<GameObject> lights;
-    public int lightPos;
     public int trail;
-    private bool stop = false;
+    private bool stop;
     public AudioSource winSound;
     private string WIN_LIGHT = "winLight";
+    private int lightIndex;
     
     // Use this for initialization
-    void Start() 
-    {
-        lights = new List<GameObject>();
+    void Start() {
+        foreach (GameObject light in lights) 
+        {
+            light.SetActive(false);
+        }
+        stop = false;
+        lightIndex = 0;
     }
 
     // Update is called once per frame
-    void FixedUpdate() 
-    {
+    void FixedUpdate() {
         if (Input.GetKeyDown(KeyCode.Space)) { stop = true; } 
         if (Input.GetKeyDown(KeyCode.DownArrow)) { stop = false; }
 
-        if (lights.Count < 1)
-        {
-            // Do logic in case somebody sets the light count to less than 1?
+        if (lightIndex >= lights.Count) {
+            lightIndex = 0;
         }
-      
-        //Invoke("lightClear", .0001f);
-        if (stop == false) 
-        {
-            for (int i = 0; i < lights.Count; i++)
-            {
-                lights[i].SetActive(true);
-                lights[i - trail].SetActive(false);
+        
+        if (stop == false) {
+            StartCoroutine("LightTrail");
+        } else {
+            /* if player hits 'Stop', we want to deactivate 
+            the trailing lights to avoid false wins */
+            foreach (GameObject light in lights) {
+                if (!(light.Equals(lights[lightIndex]))) {
+                    light.SetActive(false);
+                }
             }
         }
 
         if ((lights[0].tag == WIN_LIGHT) && (stop))
         {
             stop = false;
-            trail = 30;
-
             winSound.Play();
             Debug.Log("WINNER");
         }
     }
 
-    // void lightClear()
-    // {
-    //     if (stop == false)
-    //     {
-    //         for (int i = 0; i < 100; i++)
-    //         {
-    //             lightsOff.Add(lightsOn[i]);
-    //             lightsOn.Remove(lightsOn[i]);
-    //         }
+    IEnumerator LightTrail() {
+        lights[lightIndex].SetActive(true);
+        lightIndex++;
+        if (lightIndex > trail)
+        {
+            lights[lightIndex - trail].SetActive(false);
+        }
+        yield return new WaitForSeconds(0.1f);
+    }
 
-    //         lightsOn.Clear();           
-    //     }
-    // }
 }
 
