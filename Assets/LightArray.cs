@@ -10,9 +10,13 @@ public class LightArray : MonoBehaviour {
     public AudioSource winSound;
     private string WIN_LIGHT = "winLight";
     private int lightIndex;
+    public GameObject winLight;
+    public float speed;
     
     // Use this for initialization
     void Start() {
+        InvokeRepeating("LightTrail",speed,speed);
+        
         foreach (GameObject light in lights) 
         {
             light.SetActive(false);
@@ -28,37 +32,51 @@ public class LightArray : MonoBehaviour {
 
         if (lightIndex >= lights.Count) {
             lightIndex = 0;
+    
         }
         
-        if (stop == false) {
-            StartCoroutine("LightTrail");
+         if (stop == false) {
+             
+           // StartCoroutine(LightTrail());
         } else {
             /* if player hits 'Stop', we want to deactivate 
             the trailing lights to avoid false wins */
             foreach (GameObject light in lights) {
-                if (!(light.Equals(lights[lightIndex]))) {
+               if (!(light.Equals(lights[lightIndex]))) {
                     light.SetActive(false);
+                }
+                if ((light.Equals(lights[lightIndex]))) {
+                    light.SetActive(true);
                 }
             }
         }
-
-        if ((lights[0].tag == WIN_LIGHT) && (stop))
+ Debug.Log(lightIndex);
+ //if ((lights[0].tag == WIN_LIGHT) && (stop))
+        if ((lightIndex==46) && (stop))
         {
+            lights.Remove(winLight);
+            winLight.SetActive(true);
             stop = false;
             winSound.Play();
             Debug.Log("WINNER");
+            trail=50;
+           
         }
     }
 
-    IEnumerator LightTrail() {
+    void LightTrail() {
+       
+     if (stop==false){
         lights[lightIndex].SetActive(true);
         lightIndex++;
+       
         if (lightIndex > trail)
         {
             lights[lightIndex - trail].SetActive(false);
         }
-        yield return new WaitForSeconds(0.1f);
-    }
+       
+     }
+    } 
 
 }
 
