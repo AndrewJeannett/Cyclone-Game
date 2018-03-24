@@ -27,7 +27,9 @@ public class LightArray : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate() {
-        if (Input.GetKeyDown(KeyCode.Space)) { stop = true; } 
+        if (Input.GetKeyDown(KeyCode.Space)) {
+           
+            stop = true; } 
         if (Input.GetKeyDown(KeyCode.DownArrow)) { stop = false; }
 
         if (lightIndex >= lights.Count) {
@@ -58,7 +60,7 @@ public class LightArray : MonoBehaviour {
             stop = false;
             winSound.Play();
             Debug.Log("WINNER");
-            trail=80;
+            trail=75;
            
         }
     }

@@ -2671,7 +2671,7 @@ MonoBehaviour:
   - {fileID: 1621240597}
   - {fileID: 1048136845}
   - {fileID: 1439296037}
-  speed: 0.7
+  speed: 0.2
 --- !u!4 &446747389
 Transform:
   m_ObjectHideFlags: 0
@@ -7769,7 +7769,7 @@ MonoBehaviour:
   - {fileID: 1465620348}
   - {fileID: 1235254871}
   - {fileID: 1239701494}
-  speed: 0.7
+  speed: 0.2
 --- !u!4 &1049503001
 Transform:
   m_ObjectHideFlags: 0
@@ -14646,7 +14646,7 @@ MonoBehaviour:
   - {fileID: 488791928}
   - {fileID: 708348863}
   - {fileID: 693219338}
-  speed: 0.7
+  speed: 0.2
 --- !u!4 &1804219663
 Transform:
   m_ObjectHideFlags: 0
