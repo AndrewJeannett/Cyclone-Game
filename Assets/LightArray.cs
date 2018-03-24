@@ -8,6 +8,7 @@ public class LightArray : MonoBehaviour {
     public int trail;
     private bool stop;
     public AudioSource winSound;
+    public AudioSource loseSound;
     private string WIN_LIGHT = "winLight";
     private int lightIndex;
     public GameObject winLight;
@@ -66,7 +67,12 @@ public class LightArray : MonoBehaviour {
             winSound.Play();
             Debug.Log("WINNER");
             trail=75;
-           
+
+        }
+        if (!(lightIndex == 47) && (stop)&&(Input.GetKeyDown(KeyCode.Space)))
+        {
+            loseSound.Play();
+            
         }
     }
 
