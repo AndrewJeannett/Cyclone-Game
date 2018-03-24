@@ -49,7 +49,7 @@ public class LightArray : MonoBehaviour {
                 }
             }
         }
- Debug.Log(lightIndex);
+ //Debug.Log(lightIndex);
  //if ((lights[0].tag == WIN_LIGHT) && (stop))
         if ((lightIndex==47) && (stop))
         {
