@@ -35,10 +35,9 @@ public class LightArray : MonoBehaviour {
     
         }
         
-         if (stop == false) {
+         if (stop == true) {
              
-           // StartCoroutine(LightTrail());
-        } else {
+  
             /* if player hits 'Stop', we want to deactivate 
             the trailing lights to avoid false wins */
             foreach (GameObject light in lights) {
@@ -52,14 +51,14 @@ public class LightArray : MonoBehaviour {
         }
  Debug.Log(lightIndex);
  //if ((lights[0].tag == WIN_LIGHT) && (stop))
-        if ((lightIndex==46) && (stop))
+        if ((lightIndex==47) && (stop))
         {
             lights.Remove(winLight);
             winLight.SetActive(true);
             stop = false;
             winSound.Play();
             Debug.Log("WINNER");
-            trail=50;
+            trail=80;
            
         }
     }
@@ -71,11 +70,12 @@ public class LightArray : MonoBehaviour {
         lightIndex++;
        
         if (lightIndex > trail)
-        {
+       {
             lights[lightIndex - trail].SetActive(false);
+
+            }else { lights[lights.Count -trail+lightIndex].SetActive(false); }
+
         }
-       
-     }
     } 
 
 }
