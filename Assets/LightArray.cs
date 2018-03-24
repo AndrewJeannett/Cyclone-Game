@@ -12,6 +12,7 @@ public class LightArray : MonoBehaviour {
     private int lightIndex;
     public GameObject winLight;
     public float speed;
+    public Animator quarter;
     
     // Use this for initialization
     void Start() {
@@ -30,7 +31,11 @@ public class LightArray : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
            
             stop = true; } 
-        if (Input.GetKeyDown(KeyCode.DownArrow)) { stop = false; }
+        if (Input.GetKeyDown(KeyCode.DownArrow)) {
+            stop = false;
+            quarter.SetTrigger("play");
+            lightIndex = 46;
+        }
 
         if (lightIndex >= lights.Count) {
             lightIndex = 0;
